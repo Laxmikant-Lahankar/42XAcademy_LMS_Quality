@@ -1,0 +1,30 @@
+.course-modules-hint {
+  flex: 1 1 260px;
+
+  font-size: var(--text-sm);
+}
+
+.course-modules-order {
+  width: 28px;
+  height: 28px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.course-modules-move {
+  justify-content: flex-start;
+}
+
+.course-modules-up {
+  transform: rotate(180deg);
+}

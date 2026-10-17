@@ -1,0 +1,41 @@
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-track {
+  flex: 1;
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #e7ecf6;
+}
+
+.progress-fill {
+  height: 100%;
+
+  border-radius: 999px;
+
+  background: var(--brand-gradient);
+
+  transition: width 0.3s ease;
+}
+
+.progress-fill.is-complete {
+  background: var(--color-success);
+}
+
+.progress-label {
+  min-width: 38px;
+
+  color: var(--color-text);
+
+  font-size: var(--text-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}

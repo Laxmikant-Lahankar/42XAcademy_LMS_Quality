@@ -1,0 +1,81 @@
+.video-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  border-radius: var(--radius-lg);
+
+  background: var(--brand-navy-950);
+}
+
+.video-player-media {
+  width: 100%;
+  height: 100%;
+
+  background: #000000;
+}
+
+.video-player-placeholder {
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background:
+    radial-gradient(circle at 50% 40%, rgba(46, 87, 223, 0.35), transparent 60%),
+    var(--brand-navy-950);
+  color: #c9d3ea;
+
+  text-align: center;
+}
+
+.video-player-icon {
+  width: 64px;
+  height: 64px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--brand-gradient);
+  color: #ffffff;
+}
+
+.video-player-title {
+  color: #ffffff;
+
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.video-player-note {
+  max-width: 44ch;
+
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 560px) {
+  .video-player {
+    border-radius: var(--radius-md);
+  }
+
+  .video-player-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .video-player-title {
+    font-size: var(--text-md);
+  }
+
+  .video-player-note {
+    font-size: var(--text-xs);
+  }
+}

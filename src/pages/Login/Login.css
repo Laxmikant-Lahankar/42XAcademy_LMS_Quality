@@ -1,0 +1,265 @@
+.login-page {
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+/* Left: brand panel in the 42xacademy.com navy */
+
+.login-brand {
+  padding: 48px 56px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+
+  background:
+    radial-gradient(circle at 85% 15%, rgba(0, 180, 255, 0.16), transparent 45%),
+    var(--brand-navy-950);
+  color: #c9d3ea;
+}
+
+.login-brand-copy {
+  max-width: 440px;
+}
+
+.login-brand-copy h1 {
+  color: #ffffff;
+
+  font-size: 2.1rem;
+  line-height: 1.2;
+}
+
+.login-brand-copy > p {
+  margin-top: 14px;
+
+  font-size: var(--text-md);
+}
+
+.login-brand-copy ul {
+  margin: 28px 0 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  list-style: none;
+}
+
+.login-brand-copy li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.login-brand-copy li svg {
+  margin-top: 2px;
+  flex-shrink: 0;
+
+  color: var(--brand-cyan-500);
+}
+
+.login-brand-tagline {
+  color: #7f8db0;
+
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+}
+
+/* Right: sign-in card */
+
+.login-panel {
+  padding: 40px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 28px;
+}
+
+.login-card h2 {
+  margin-bottom: 6px;
+
+  font-size: var(--text-xl);
+}
+
+.login-roles {
+  margin: 22px 0 18px;
+  padding: 4px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+}
+
+.login-role {
+  height: 38px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: none;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+  color: var(--color-text-muted);
+
+  font-size: var(--text-sm);
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.login-role.is-active {
+  background: var(--color-surface);
+  color: var(--color-primary);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-password {
+  position: relative;
+}
+
+.login-password .input {
+  padding-right: 44px;
+}
+
+.login-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+
+  padding: 6px;
+
+  display: inline-flex;
+
+  transform: translateY(-50%);
+
+  border: none;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+  color: var(--color-text-muted);
+
+  cursor: pointer;
+}
+
+.login-link {
+  align-self: flex-start;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  border: none;
+  background: none;
+  color: var(--color-primary);
+
+  font-size: var(--text-sm);
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+.login-submit {
+  height: 44px;
+}
+
+.login-error,
+.login-success {
+  padding: 10px 12px;
+
+  border-radius: var(--radius-sm);
+
+  font-size: var(--text-sm);
+}
+
+.login-error {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+.login-success {
+  margin: 18px 0;
+
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.login-back {
+  margin-top: 18px;
+}
+
+.login-demo {
+  margin-top: 22px;
+  padding: 12px 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .login-brand {
+    padding: 28px 20px;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+    gap: 18px;
+  }
+
+  .login-brand-copy h1 {
+    font-size: 1.5rem;
+  }
+
+  .login-brand-copy ul,
+  .login-brand-tagline {
+    display: none;
+  }
+
+  .login-panel {
+    padding: 24px 16px 40px;
+    align-items: flex-start;
+  }
+
+  .login-card {
+    padding: 24px 20px;
+  }
+}

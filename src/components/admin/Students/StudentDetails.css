@@ -1,0 +1,109 @@
+.student-details {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.student-details-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.student-details-head > div {
+  flex: 1;
+  min-width: 0;
+
+  overflow-wrap: anywhere;
+}
+
+.student-details-avatar {
+  width: 48px;
+  height: 48px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--brand-navy-800);
+  color: #ffffff;
+
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.student-details-name {
+  color: var(--color-text);
+
+  font-family: var(--font-heading);
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.student-details-facts {
+  margin: 0;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.student-details-facts dt {
+  color: var(--color-text-subtle);
+
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.student-details-facts dd {
+  margin: 2px 0 0;
+
+  color: var(--color-text);
+
+  font-size: var(--text-sm);
+}
+
+.student-details-heading {
+  font-size: var(--text-md);
+}
+
+.student-details-courses {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  list-style: none;
+}
+
+.student-details-courses li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.student-details-course-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.student-details-meta {
+  font-size: var(--text-xs);
+}
+
+@media (max-width: 560px) {
+  .student-details-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

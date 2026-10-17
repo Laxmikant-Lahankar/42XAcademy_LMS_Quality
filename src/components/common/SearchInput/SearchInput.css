@@ -1,0 +1,28 @@
+.search-input {
+  position: relative;
+
+  flex: 1 1 260px;
+  max-width: 380px;
+}
+
+.search-input svg {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+
+  transform: translateY(-50%);
+
+  color: var(--color-text-subtle);
+  pointer-events: none;
+}
+
+.search-input .input {
+  width: 100%;
+  padding-left: 38px;
+}
+
+@media (max-width: 560px) {
+  .search-input {
+    max-width: none;
+  }
+}

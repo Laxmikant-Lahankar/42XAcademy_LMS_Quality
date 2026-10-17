@@ -1,0 +1,46 @@
+.course-thumb {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 14px;
+
+  border-radius: var(--radius-md);
+
+  background: linear-gradient(135deg, var(--brand-navy-800), var(--brand-blue-600));
+  color: #ffffff;
+}
+
+.course-thumb-md {
+  aspect-ratio: 16 / 7;
+  max-width: 100%;
+}
+
+.course-thumb-sm {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.course-thumb-code {
+  align-self: flex-start;
+  padding: 2px 8px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.16);
+
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* One colour family per track, all from the 42X palette */
+.course-thumb-sap { background: linear-gradient(135deg, #0b1e40, #2e57df); }
+.course-thumb-data { background: linear-gradient(135deg, #081631, #00a3e8); }
+.course-thumb-power-platform { background: linear-gradient(135deg, #1b1846, #6a3ae0); }
+.course-thumb-devops { background: linear-gradient(135deg, #0b1e40, #3f76f0); }

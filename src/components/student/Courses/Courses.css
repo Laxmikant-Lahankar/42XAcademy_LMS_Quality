@@ -1,0 +1,93 @@
+.courses-toolbar {
+  margin-bottom: 20px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 20px;
+}
+
+/* Course card */
+
+.course-card {
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.course-card-body {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.course-card-body .progress {
+  width: 100%;
+}
+
+.course-card-title {
+  font-size: var(--text-lg);
+}
+
+.course-card-title a {
+  color: var(--color-text);
+}
+
+.course-card-meta {
+  font-size: var(--text-sm);
+}
+
+.course-card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.course-card-actions .btn {
+  flex: 1;
+}
+
+/* Lecture search results */
+
+.courses-lecture-matches {
+  margin-bottom: 20px;
+}
+
+.courses-lecture-matches ul {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  list-style: none;
+}
+
+.courses-lecture-matches li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+
+  font-size: var(--text-sm);
+}
+
+.courses-lecture-matches li svg {
+  color: var(--color-primary);
+}
+
+.courses-lecture-matches li a {
+  font-weight: 600;
+}
+
+@media (max-width: 420px) {
+  .courses-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

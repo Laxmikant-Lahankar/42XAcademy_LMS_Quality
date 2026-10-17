@@ -1,0 +1,6 @@
+.students-courses {
+  display: inline-block;
+  max-width: 260px;
+
+  font-size: var(--text-sm);
+}

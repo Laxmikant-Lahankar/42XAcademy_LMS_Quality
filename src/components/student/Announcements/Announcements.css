@@ -1,0 +1,41 @@
+.announcements-toolbar {
+  margin-bottom: 20px;
+}
+
+.announcement-list {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  list-style: none;
+}
+
+.announcement.is-pinned {
+  border-color: rgba(46, 87, 223, 0.35);
+}
+
+.announcement-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.announcement-head h2 {
+  font-size: var(--text-md);
+}
+
+.announcement-message {
+  margin-top: 8px;
+  max-width: 75ch;
+}
+
+.announcement-meta {
+  margin-top: 10px;
+
+  font-size: var(--text-xs);
+}

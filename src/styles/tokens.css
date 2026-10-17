@@ -1,0 +1,68 @@
+/*
+  42X Academy design tokens.
+  Brand colors and fonts follow https://42xacademy.com
+  (navy backgrounds, cyan-blue + blue primary, violet accent, Poppins headings).
+*/
+
+:root {
+  /* Brand */
+  --brand-navy-950: #070d1b;
+  --brand-navy-900: #081631;
+  --brand-navy-800: #0b1e40;
+  --brand-blue-700: #2348c4;
+  --brand-blue-600: #2e57df;
+  --brand-blue-500: #5b8cff;
+  --brand-cyan-500: #00b4ff;
+  --brand-violet-600: #7b3dff;
+  --brand-gradient: linear-gradient(90deg, #00b4ff 0%, #2e57df 100%);
+
+  /* Neutrals (slightly blue-tinted) */
+  --color-bg: #f4f6fb;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f7f9fd;
+  --color-border: #e2e7f1;
+  --color-border-strong: #cfd7e6;
+
+  --color-text: #101828;
+  --color-text-body: #344054;
+  --color-text-muted: #5d6679;
+  --color-text-subtle: #8a93a6;
+
+  /* Primary action */
+  --color-primary: var(--brand-blue-600);
+  --color-primary-hover: var(--brand-blue-700);
+  --color-primary-soft: #eaf0ff;
+
+  /* Semantic */
+  --color-success: #0f8a5f;
+  --color-success-soft: #e5f6ef;
+  --color-warning: #b45309;
+  --color-warning-soft: #fdf2e2;
+  --color-danger: #c4322b;
+  --color-danger-soft: #fdecec;
+  --color-info-soft: #e6f6ff;
+
+  /* Typography */
+  --font-heading: "Poppins", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 0.9375rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+
+  /* Shape & depth */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 6px 20px rgba(11, 30, 64, 0.08);
+
+  /* Layout */
+  --sidebar-width: 256px;
+  --header-height: 64px;
+  --content-max: 1200px;
+}

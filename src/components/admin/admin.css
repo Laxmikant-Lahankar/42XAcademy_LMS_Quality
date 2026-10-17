@@ -1,0 +1,24 @@
+/* Layout shared by admin list pages (toolbar above a table card). */
+
+.admin-toolbar {
+  margin-bottom: 16px;
+}
+
+.admin-count {
+  margin-left: auto;
+
+  color: var(--color-text-muted);
+
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+.admin-table-progress {
+  min-width: 140px;
+}
+
+@media (max-width: 560px) {
+  .admin-count {
+    margin-left: 0;
+  }
+}

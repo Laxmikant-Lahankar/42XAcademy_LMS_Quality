@@ -1,0 +1,38 @@
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+
+  user-select: none;
+}
+
+.logo-mark {
+  width: auto;
+  height: 34px;
+}
+
+.logo-word {
+  padding-left: 3px;
+
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.42em;
+}
+
+.logo-dark .logo-word {
+  color: #ffffff;
+}
+
+.logo-light .logo-word {
+  color: var(--brand-navy-800);
+}
+
+.logo-lg .logo-mark {
+  height: 52px;
+}
+
+.logo-lg .logo-word {
+  font-size: 13px;
+}

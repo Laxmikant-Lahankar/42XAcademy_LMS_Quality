@@ -1,0 +1,32 @@
+.course-lectures-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.course-lectures-group-head {
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.course-lectures-group-head h3 {
+  font-size: var(--text-md);
+}
+
+.course-lectures-group-head h3 .muted {
+  font-weight: 500;
+}
+
+.course-lectures-empty {
+  padding: 14px;
+
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+
+  font-size: var(--text-sm);
+}
