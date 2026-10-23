@@ -1,0 +1,17 @@
+# Copy this file to application-local.properties (same folder) and fill in your values.
+# application-local.properties is git-ignored — never commit real passwords.
+
+# Azure SQL uses Microsoft Entra sign-in, so there is no database password.
+# Only set these if you use a different server or database:
+# azure.sql.server=yourserver.database.windows.net
+# azure.sql.database=YourDatabase
+
+# Any random text of at least 32 characters
+app.jwt.secret=CHANGE_ME_TO_A_LONG_RANDOM_SECRET_OF_32_PLUS_CHARS
+
+# Key that encrypts the student passwords admins can view (any long random text; never change it later)
+app.password-vault.key=CHANGE_ME_TO_ANOTHER_LONG_RANDOM_SECRET
+
+# Passwords given to the demo users from database/seed (local development only)
+app.seed.student-password=CHOOSE_A_STUDENT_DEMO_PASSWORD
+app.seed.admin-password=CHOOSE_AN_ADMIN_DEMO_PASSWORD
