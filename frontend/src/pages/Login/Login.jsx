@@ -7,16 +7,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import { authService, ROLES } from "../../services/auth/authService";
 import { homePathFor } from "../../routes/paths";
-import { env } from "../../config/env";
 import "./Login.css";
-
-// Demo accounts from database/seed. Shown only in mock mode or on the local dev server,
-// never in a production build. Local passwords come from backend/application-local.properties.
-const DEMO_ACCOUNTS = {
-  [ROLES.STUDENT]: { email: "priya.sharma@example.com" },
-  [ROLES.ADMIN]: { email: "admin@example.com" },
-};
-const SHOW_DEMO = env.useMockApi || import.meta.env.DEV;
 
 function Login() {
   const { user, login } = useAuth();
@@ -169,27 +160,6 @@ function Login() {
                   {submitting ? "Signing in…" : `Sign in as ${role === ROLES.ADMIN ? "Admin" : "Student"}`}
                 </button>
               </form>
-
-              {SHOW_DEMO && (
-                <div className="login-demo">
-                  <p>
-                    <strong>Demo account</strong>
-                    {env.useMockApi
-                      ? " (mock mode — any password works)"
-                      : " — password: app.seed.* in backend/application-local.properties"}
-                  </p>
-                  <button
-                    type="button"
-                    className="login-link"
-                    onClick={() => {
-                      setEmail(DEMO_ACCOUNTS[role].email);
-                      if (env.useMockApi) setPassword("demo");
-                    }}
-                  >
-                    Use {DEMO_ACCOUNTS[role].email}
-                  </button>
-                </div>
-              )}
             </>
           ) : (
             <>

@@ -22,7 +22,7 @@ npm run lint
 | Student | `priya.sharma@example.com`  |
 | Admin   | `admin@example.com`         |
 
-Passwords come from `backend/application-local.properties` (`app.seed.*`). On the local dev server the login page shows a "Use demo account" shortcut; production builds do not.
+Passwords come from `backend/application-local.properties` (`app.seed.*`).
 
 ### Working without the backend (mock mode)
 
