@@ -32,7 +32,8 @@ On start a browser window asks you to sign in with your Microsoft account (no da
 ```bash
 cd frontend
 npm install
-npm run dev                   # http://localhost:5173
+npm run dev                   # http://localhost:5173 — also starts the backend if it is not running
+npm run dev:frontend          # frontend only
 ```
 
 ### 3. Sign in

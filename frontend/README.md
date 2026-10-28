@@ -9,7 +9,8 @@ Start the backend first (see the main [README](../README.md)), then:
 
 ```bash
 npm install
-npm run dev       # http://localhost:5173  (uses .env.development → http://localhost:8080/api)
+npm run dev       # http://localhost:5173 + starts the backend (../backend) if it is not running
+npm run dev:frontend   # frontend only
 npm run build     # production build in dist/
 npm run preview   # serve the production build locally
 npm run lint

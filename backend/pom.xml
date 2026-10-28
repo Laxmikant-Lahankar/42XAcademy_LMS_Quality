@@ -50,14 +50,12 @@
     <dependency>
       <groupId>com.microsoft.sqlserver</groupId>
       <artifactId>mssql-jdbc</artifactId>
-      <scope>runtime</scope>
     </dependency>
-    <!-- Microsoft Entra sign-in for the JDBC driver (no database password) -->
+    <!-- Microsoft Entra sign-in for the JDBC driver (no database password), see AzureSqlTokenCallback -->
     <dependency>
       <groupId>com.azure</groupId>
       <artifactId>azure-identity</artifactId>
       <version>${azure-identity.version}</version>
-      <scope>runtime</scope>
     </dependency>
 
     <!-- Security: Spring Security + JWT (HS256) -->

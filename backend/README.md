@@ -22,7 +22,7 @@ API base: `http://localhost:8080/api` · Health: `GET /api/actuator/health`
 | -------------------------- | ------------------------------------------------------------- |
 | `AZURE_SQL_SERVER`         | Default `42xcore.database.windows.net`                        |
 | `AZURE_SQL_DATABASE`       | Default `42X_Core`                                            |
-| `AZURE_SQL_AUTH`           | Microsoft Entra method: `ActiveDirectoryInteractive` (default, local browser sign-in), `ActiveDirectoryManagedIdentity` (on Azure) or `ActiveDirectoryDefault` |
+| `AZURE_SQL_AUTH`           | Microsoft Entra method: `interactive` (default, one browser sign-in per start), `managed-identity` (on Azure) or `default` (Azure CLI / environment) |
 | `JWT_SECRET`               | Token signing secret, **at least 32 characters**              |
 | `JWT_EXPIRATION_MINUTES`   | Login lifetime (default 480 = 8 hours)                        |
 | `CORS_ALLOWED_ORIGINS`     | Frontend URLs, comma separated (e.g. `https://student.42xacademy.com`) |
@@ -64,6 +64,6 @@ Only `service/MediaService.java` needs to change: use Microsoft Graph with the b
 
 ## Production checklist
 
-- Set `AZURE_SQL_AUTH=ActiveDirectoryManagedIdentity`, `JWT_SECRET`, `PASSWORD_VAULT_KEY`, `CORS_ALLOWED_ORIGINS` as environment variables, and give the app's managed identity access to the database (see `database/README.md`).
+- Set `AZURE_SQL_AUTH=managed-identity`, `JWT_SECRET`, `PASSWORD_VAULT_KEY`, `CORS_ALLOWED_ORIGINS` as environment variables, and give the app's managed identity access to the database (see `database/README.md`).
 - Set `FLYWAY_LOCATIONS=classpath:db/migration` so demo data is not loaded.
 - Leave `SEED_*_PASSWORD` empty and create real admin accounts.

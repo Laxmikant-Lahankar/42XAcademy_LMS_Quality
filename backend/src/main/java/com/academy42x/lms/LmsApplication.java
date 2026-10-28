@@ -11,7 +11,7 @@ public class LmsApplication {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(LmsApplication.class);
-        // ActiveDirectoryInteractive opens the Microsoft sign-in page in the browser; headless mode blocks that.
+        // The local Microsoft sign-in (AzureSqlTokenCallback) opens a browser; headless mode blocks that.
         app.setHeadless(false);
         app.run(args);
     }
