@@ -7,7 +7,28 @@ import { useAuth } from "../../hooks/useAuth";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import { authService, ROLES } from "../../services/auth/authService";
 import { homePathFor } from "../../routes/paths";
+import LoginBackdrop from "./LoginBackdrop";
 import "./Login.css";
+
+// "Remember me" keeps only the email on this device, never the password.
+const REMEMBER_KEY = "42x-lms-remember-email";
+
+function readRememberedEmail() {
+  try {
+    return localStorage.getItem(REMEMBER_KEY) || "";
+  } catch {
+    return "";
+  }
+}
+
+function rememberEmail(email) {
+  try {
+    if (email) localStorage.setItem(REMEMBER_KEY, email);
+    else localStorage.removeItem(REMEMBER_KEY);
+  } catch {
+    // Storage blocked (private mode): nothing to remember.
+  }
+}
 
 function Login() {
   const { user, login } = useAuth();
@@ -15,9 +36,11 @@ function Login() {
   const location = useLocation();
 
   const [role, setRole] = useState(ROLES.STUDENT);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(readRememberedEmail);
+  const [remember, setRemember] = useState(() => Boolean(readRememberedEmail()));
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [capsLock, setCapsLock] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [mode, setMode] = useState("login");
@@ -35,6 +58,7 @@ function Login() {
 
     try {
       const signedIn = await login({ email, password, role });
+      rememberEmail(remember ? email.trim() : "");
       const from = location.state?.from;
       const target = from && from.startsWith(homePathFor(signedIn.role)) ? from : homePathFor(signedIn.role);
       navigate(target, { replace: true });
@@ -70,25 +94,31 @@ function Login() {
 
   return (
     <div className="login-page">
-      <section className="login-brand">
-        <Logo variant="dark" size="lg" />
+      <LoginBackdrop />
 
+      <header className="login-header">
+        <Logo variant="dark" size="lg" />
+      </header>
+
+      <section className="login-brand">
         <div className="login-brand-copy">
-          <h1>Your 42X Academy learning space</h1>
+          <h1>
+            Your <span className="login-gradient-text">42X</span> Academy learning space
+          </h1>
           <p>Recorded lectures, notes and your progress for every course, in one place.</p>
 
           <ul>
-            <li><Icon name="play-circle" size={18} /> Watch recorded lectures and continue where you stopped</li>
-            <li><Icon name="folder" size={18} /> Download syllabus, notes and assignments</li>
-            <li><Icon name="chart" size={18} /> Track your course progress module by module</li>
+            <li><span className="login-feature-icon"><Icon name="play-circle" size={18} /></span> Watch recorded lectures and continue where you stopped</li>
+            <li><span className="login-feature-icon"><Icon name="folder" size={18} /></span> Download syllabus, notes and assignments</li>
+            <li><span className="login-feature-icon"><Icon name="chart" size={18} /></span> Track your course progress module by module</li>
           </ul>
-        </div>
 
-        <p className="login-brand-tagline">Learn · Grow · Build Your Future</p>
+          <p className="login-brand-tagline"><span className="login-gradient-text">Learn · Grow · Build Your Future</span></p>
+        </div>
       </section>
 
       <section className="login-panel">
-        <div className="login-card card">
+        <div className="login-card">
           {mode === "login" ? (
             <>
               <h2>Sign in</h2>
@@ -116,20 +146,24 @@ function Login() {
               <form className="login-form" onSubmit={handleLogin} noValidate>
                 <div className="field">
                   <label className="field-label" htmlFor="login-email">Email</label>
-                  <input
-                    id="login-email"
-                    className="input"
-                    type="email"
-                    autoComplete="username"
-                    placeholder="you@example.com"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                  />
+                  <div className="login-input">
+                    <Icon name="mail" size={18} />
+                    <input
+                      id="login-email"
+                      className="input"
+                      type="email"
+                      autoComplete="username"
+                      placeholder="you@example.com"
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
+                    />
+                  </div>
                 </div>
 
                 <div className="field">
                   <label className="field-label" htmlFor="login-password">Password</label>
-                  <div className="login-password">
+                  <div className="login-input login-password">
+                    <Icon name="lock" size={18} />
                     <input
                       id="login-password"
                       className="input"
@@ -138,6 +172,8 @@ function Login() {
                       placeholder="Enter your password"
                       value={password}
                       onChange={(event) => setPassword(event.target.value)}
+                      onKeyUp={(event) => setCapsLock(event.getModifierState("CapsLock"))}
+                      onBlur={() => setCapsLock(false)}
                     />
                     <button
                       type="button"
@@ -148,16 +184,40 @@ function Login() {
                       <Icon name={showPassword ? "eye-off" : "eye"} size={18} />
                     </button>
                   </div>
+                  {capsLock && (
+                    <p className="login-caps" role="status">
+                      <Icon name="alert" size={14} /> Caps Lock is on
+                    </p>
+                  )}
                 </div>
 
-                <button type="button" className="login-link" onClick={() => switchMode("forgot")}>
-                  Forgot password?
-                </button>
+                <div className="login-row">
+                  <label className="login-remember">
+                    <input type="checkbox" checked={remember} onChange={(event) => setRemember(event.target.checked)} />
+                    Remember me
+                  </label>
+                  <button type="button" className="login-link" onClick={() => switchMode("forgot")}>
+                    Forgot password?
+                  </button>
+                </div>
 
-                {error && <p className="login-error" role="alert">{error}</p>}
+                {error && (
+                  <p className="login-error" role="alert">
+                    <Icon name="alert" size={16} /> {error}
+                  </p>
+                )}
 
                 <button type="submit" className="btn btn-primary btn-block login-submit" disabled={submitting}>
-                  {submitting ? "Signing in…" : `Sign in as ${role === ROLES.ADMIN ? "Admin" : "Student"}`}
+                  {submitting ? (
+                    <><span className="login-spinner" aria-hidden="true" /> Signing in…</>
+                  ) : (
+                    <>
+                      Sign in as {role === ROLES.ADMIN ? "Admin" : "Student"}
+                      <svg className="login-submit-arrow" viewBox="0 0 26 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M1 7h23M18 1l6 6-6 6" />
+                      </svg>
+                    </>
+                  )}
                 </button>
               </form>
             </>
@@ -175,20 +235,27 @@ function Login() {
                 <form className="login-form" onSubmit={handleReset} noValidate>
                   <div className="field">
                     <label className="field-label" htmlFor="reset-email">Email</label>
-                    <input
-                      id="reset-email"
-                      className="input"
-                      type="email"
-                      autoComplete="username"
-                      placeholder="you@example.com"
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value)}
-                    />
+                    <div className="login-input">
+                      <Icon name="mail" size={18} />
+                      <input
+                        id="reset-email"
+                        className="input"
+                        type="email"
+                        autoComplete="username"
+                        placeholder="you@example.com"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                      />
+                    </div>
                   </div>
 
-                  {error && <p className="login-error" role="alert">{error}</p>}
+                  {error && (
+                    <p className="login-error" role="alert">
+                      <Icon name="alert" size={16} /> {error}
+                    </p>
+                  )}
 
-                  <button type="submit" className="btn btn-primary btn-block" disabled={submitting}>
+                  <button type="submit" className="btn btn-primary btn-block login-submit" disabled={submitting}>
                     {submitting ? "Sending…" : "Send reset link"}
                   </button>
                 </form>

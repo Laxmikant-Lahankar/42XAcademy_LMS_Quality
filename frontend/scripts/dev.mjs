@@ -35,6 +35,8 @@ function javaHome() {
     const jdk21 = readdirSync(jdks).filter((name) => name.startsWith("jdk-21")).sort().pop();
     if (jdk21) return join(jdks, jdk21);
   }
+  const jbr = "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.2.1\\jbr";
+  if (existsSync(jbr)) return jbr;
   return process.env.JAVA_HOME;
 }
 
@@ -52,9 +54,13 @@ function startBackend(attempt = 1) {
     : spawn("./mvnw", ["-q", "spring-boot:run"], { cwd: backendDir, env });
 
   let sleepingDatabase = false;
+  let signInTimedOut = false;
+  let blockedIp = "";
   const onOutput = (chunk) => {
     for (const line of chunk.toString().split(/\r?\n/)) {
       if (line.includes("not currently available")) sleepingDatabase = true;
+      if (/Connection reset|Failed to authenticate|timed out/.test(line)) signInTimedOut = true;
+      blockedIp = line.match(/Client with IP address '([\d.]+)' is not allowed/)?.[1] || blockedIp;
       if (IMPORTANT.test(line)) log(line.replace(/^.*?\]\s+[\w.$]+\s+:\s+/, "").slice(0, 300));
     }
   };
@@ -70,6 +76,11 @@ function startBackend(attempt = 1) {
       setTimeout(() => startBackend(attempt + 1), 20000);
     } else if (code !== 0) {
       log(`stopped (exit code ${code}). See the messages above; the frontend keeps running.`);
+      if (blockedIp) {
+        log(`→ Fix: add ${blockedIp} to the Azure SQL firewall (server 42xcore → Networking), wait 2 minutes, run npm run dev again.`);
+      } else if (signInTimedOut) {
+        log("→ Fix: the Microsoft sign-in was not finished in time. Run npm run dev again and sign in within 2 minutes.");
+      }
     }
   });
 }
